@@ -1,50 +1,45 @@
-﻿@model SP26_SMAssignment3.Models.Actor
+@model SP26_SMAssignment3.Models.Actor
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Add Actor";
 }
 
-<h1>Create</h1>
-
-<h4>Actor</h4>
+<h1>Add Actor</h1>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-5">
         <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label>Photo</label>
-                <input type="file" name="PhotoFile" class="form-control" />
+            <div class="form-group mb-3">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label asp-for="Gender" class="control-label"></label>
                 <input asp-for="Gender" class="form-control" />
                 <span asp-validation-for="Gender" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="IMDBLink" class="control-label"></label>
-                <input asp-for="IMDBLink" class="form-control" />
-                <span asp-validation-for="IMDBLink" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label asp-for="Age" class="control-label"></label>
                 <input asp-for="Age" class="form-control" />
                 <span asp-validation-for="Age" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Photo" class="control-label"></label>
-                <input asp-for="Photo" class="form-control" />
-                <span asp-validation-for="Photo" class="text-danger"></span>
+            <div class="form-group mb-3">
+                <label asp-for="IMDBLink" class="control-label"></label>
+                <input asp-for="IMDBLink" class="form-control" placeholder="https://www.imdb.com/name/..." />
+                <span asp-validation-for="IMDBLink" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-3">
+                <label class="control-label">Photo</label>
+                <input type="file" name="PhotoFile" class="form-control" accept="image/*" />
+            </div>
+            <div class="form-group mt-3">
                 <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary ms-2">Cancel</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
