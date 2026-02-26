@@ -36,6 +36,43 @@
     </div>
 </div>
 
+@if (Model.Cast.Count > 0)
+{
+    <hr />
+    <h3>Cast</h3>
+    <table id="castTable" class="table table-striped table-hover align-middle">
+        <thead>
+            <tr>
+                <th>Photo</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>IMDB</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var actor in Model.Cast)
+            {
+                <tr>
+                    <td>
+                        @if (!string.IsNullOrEmpty(actor.Photo))
+                        {
+                            <img src="@actor.Photo" style="height:50px;width:50px;object-fit:cover;" class="rounded-circle" />
+                        }
+                    </td>
+                    <td><a asp-controller="Actors" asp-action="Details" asp-route-id="@actor.Id">@actor.Name</a></td>
+                    <td>@actor.Age</td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(actor.IMDBLink))
+                        {
+                            <a href="@actor.IMDBLink" target="_blank">IMDB</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
 <hr />
 
 <h3>Reddit Sentiment Analysis</h3>
@@ -50,7 +87,7 @@
 }
 else
 {
-    <table class="table table-striped table-hover">
+    <table id="sentimentTable" class="table table-striped table-hover">
         <thead>
             <tr>
                 <th>Reddit Comment</th>
@@ -68,4 +105,13 @@ else
             }
         </tbody>
     </table>
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#sentimentTable').DataTable();
+            $('#castTable').DataTable();
+        });
+    </script>
 }

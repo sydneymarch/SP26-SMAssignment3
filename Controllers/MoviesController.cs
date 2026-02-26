@@ -37,11 +37,18 @@ namespace SP26_SMAssignment3.Controllers
 
             var (posts, overallScore) = await GetMovieSentimentAsync(movie.Title ?? "");
 
+            var cast = await _context.MovieActor
+                .Where(ma => ma.MovieId == id)
+                .Include(ma => ma.Actor)
+                .Select(ma => ma.Actor!)
+                .ToListAsync();
+
             var viewModel = new MovieDetailsViewModel
             {
                 Movie = movie,
                 RedditPosts = posts,
-                OverallScore = overallScore
+                OverallScore = overallScore,
+                Cast = cast
             };
 
             return View(viewModel);
