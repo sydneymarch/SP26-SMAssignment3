@@ -110,7 +110,10 @@ else
 @section Scripts {
     <script>
         $(document).ready(function () {
-            $('#sentimentTable').DataTable();
+            $('#sentimentTable').DataTable({
+                pageLength: 25,
+                lengthChange: false
+            });
             $('#castTable').DataTable();
         });
     </script>
