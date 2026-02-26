@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = Model.Actor.Name ?? "Actor Details";
-    var overallPct = Math.Round(Math.Abs(Model.OverallScore) * 100, 2);
+    var overallDisplay = Math.Round(Model.OverallScore, 2);
     var badgeClass = Model.OverallSentimentLabel == "POSITIVE" ? "bg-success" : "bg-danger";
 }
 
@@ -41,7 +41,7 @@
 <h3>Reddit Sentiment Analysis</h3>
 <p class="lead">
     Overall sentiment:
-    <span class="badge @badgeClass fs-6">@Model.OverallSentimentLabel: @overallPct%</span>
+    <span class="badge @badgeClass fs-6">@Model.OverallSentimentLabel: @overallDisplay</span>
 </p>
 
 @if (Model.RedditPosts.Count == 0)
